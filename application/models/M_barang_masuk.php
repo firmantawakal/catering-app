@@ -13,6 +13,17 @@ class M_barang_masuk extends CI_Model {
         $this->db->join('acara b', 'b.id_acara = a.id_acara');
         return $this->db->get('barang_masuk a')->row();
 	}
+
+    function get_all_by_range($date1,$date2)
+    {
+        $this->db->order_by('ac.tanggal', 'DESC');
+        $this->db->where('ac.tanggal >=', $date1);
+        $this->db->where('ac.tanggal <=', $date2);
+        $this->db->join('barang b', 'b.id_barang = a.id_barang');
+        $this->db->join('barang_masuk bk', 'bk.id_barang_masuk = a.id_barang_masuk');
+        $this->db->join('acara ac', 'ac.id_acara = bk.id_acara');
+        return $this->db->get('barang_masuk_detail a')->result();
+	}
 	
 	function get_all()
     {

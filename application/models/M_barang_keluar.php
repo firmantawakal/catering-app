@@ -14,6 +14,17 @@ class M_barang_keluar extends CI_Model {
         return $this->db->get('barang_keluar a')->row();
 	}
 
+	function get_all_by_range($date1,$date2)
+    {
+        $this->db->order_by('ac.tanggal', 'DESC');
+        $this->db->where('ac.tanggal >=', $date1);
+        $this->db->where('ac.tanggal <=', $date2);
+        $this->db->join('barang b', 'b.id_barang = a.id_barang');
+        $this->db->join('barang_keluar bk', 'bk.id_barang_keluar = a.id_barang_keluar');
+        $this->db->join('acara ac', 'ac.id_acara = bk.id_acara');
+        return $this->db->get('barang_keluar_detail a')->result();
+	}
+
 	function get_all_by_status($status)
     {
         $this->db->where('status', $status);
@@ -49,12 +60,6 @@ class M_barang_keluar extends CI_Model {
         $query = $this->db->query($SQL);
         return $query->result();
 	}
-	// function get_all_acara()
-    // {
-    //     $SQL = 'select c.* from customer c where not exists (select * from acara a where a.id_customer = c.id_customer)';
-    //     $query = $this->db->query($SQL);
-    //     return $query->result();
-	// }
 	
 	function get_all_by_name()
     {

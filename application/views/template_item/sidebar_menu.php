@@ -13,9 +13,9 @@
         <!-- MENU ADMIN -->
         <?php 
         if ($this->session->userdata('level')=='admin') { ?>
-            <li class="nav-item <?php echo ($this->uri->segment(1) == 'barang_keluar' ? 'active' : ''); ?>">
-                <a href="<?php echo site_url('barang_keluar') ?>" class="nav-link">
-                    <i class="link-icon" data-feather="home"></i><span class="link-title">Dashboard</span></a>
+            <li class="nav-item <?php echo ($this->uri->segment(1) == 'home' ? 'active' : ''); ?>">
+                <a href="<?php echo site_url('home') ?>" class="nav-link">
+                    <i class="link-icon" data-feather="home"></i><span class="link-title">Home</span></a>
             </li>  
             <li class="nav-item nav-category">Data Master</li>
 

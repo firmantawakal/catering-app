@@ -20,6 +20,7 @@ class Barang extends CI_Controller {
 		$this->load->model('m_barang');
 		$this->load->model('m_fungsi');
 		$this->load->model('m_satuan');
+		$this->load->model('m_user');
 	}
 	
 	public function index(){
@@ -29,6 +30,7 @@ class Barang extends CI_Controller {
 
 	public function hilang(){
 		$data['condition'] = $this->m_barang->get_condition('hilang');
+		$data['petugas'] = $this->m_user->get_by_level('petugas');
 		$this->template->load('template','barang/v_barang_hilang', $data);
 	}
 
@@ -41,6 +43,16 @@ class Barang extends CI_Controller {
 		$data['condition'] = $this->m_barang->get_condition('pinjam');
 		$this->template->load('template','barang/v_barang_pinjam', $data);
 	}
+
+	// LAST WORK ====================
+	public function report($cond){
+		$range_date = $this->string_->split_date($_GET['date_range']);
+		
+		$data['barang_hilang'] = $this->m_barang->get_all_by_range($range_date['date1'],$range_date['date2']);
+
+		$this->template->load('template','barang/v_barang_pinjam', $data);
+	}
+	
 
 	public function create()
 	{

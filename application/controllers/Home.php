@@ -12,17 +12,17 @@ class Home extends CI_Controller {
 				 redirect(site_url('login'));
 		}
 
-		// if ($this->session->userdata('level') != 'superadmin') {
-		// 	redirect($_SERVER['HTTP_REFERER']);
-		// }
+		$this->load->model('m_barang');
 	}
 
-	public function index()
-	{
-		$this->load->view('index2');
+	public function index(){
+		$data['dt_barang'] = $this->m_barang->get_all();
+		$data['dt_hilang'] = $this->m_barang->get_condition_dashboard('hilang',10);
+		$data['dt_rusak'] = $this->m_barang->get_condition_dashboard('rusak',10);
+		$data['dt_pinjam'] = $this->m_barang->get_condition_dashboard('pinjam',10);
+		// echo json_encode($data);die;
+		$this->template->load('template','home', $data);
 	}
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
 ?>

@@ -24,8 +24,15 @@ class Barang_keluar extends CI_Controller {
 	public function index(){
 		$data['barang_keluar'] = $this->m_barang_keluar->get_all();
 		$data['acara'] = $this->m_barang_keluar->get_all_acara();
-		// echo json_encode($data);die;	
 		$this->template->load('template','barang_keluar/v_barang_keluar_list', $data);
+	}
+
+	public function report(){
+        $range_date = $this->string_->split_date($_GET['date_range']);
+		
+		$data['barang_keluar'] = $this->m_barang_keluar->get_all_by_range($range_date['date1'],$range_date['date2']);
+
+		$this->template->load('template','barang_keluar/v_barang_keluar_report', $data);
 	}
 
 	public function list_product($id_barang_keluar){

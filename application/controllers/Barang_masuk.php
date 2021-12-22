@@ -36,6 +36,14 @@ class Barang_masuk extends CI_Controller {
 		
 	}
 
+	public function report(){
+        $range_date = $this->string_->split_date($_GET['date_range']);
+		
+		$data['barang_masuk'] = $this->m_barang_masuk->get_all_by_range($range_date['date1'],$range_date['date2']);
+
+		$this->template->load('template','barang_masuk/v_barang_masuk_report', $data);
+	}
+
 	public function create(){
 		if ($this->session->userdata('level')=='petugas') {
 			$data['barang_keluar'] = $this->m_barang_keluar->get_all_by_petugas(0,$this->session->userdata('id_user'));

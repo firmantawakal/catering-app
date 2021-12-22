@@ -32,7 +32,7 @@ Class Login extends CI_Controller{
 					);
 					
 					$this->session->set_userdata($data_session);
-					redirect(site_url("barang_masuk"));
+					redirect(site_url("home"));
 			}
 			else{
 				$this->session->set_flashdata('message', '

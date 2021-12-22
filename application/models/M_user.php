@@ -19,6 +19,13 @@ class M_user extends CI_Model {
         $this->db->order_by('username', 'ASC');
         return $this->db->get($this->table)->row();
 	}
+
+	function get_by_level($level)
+    {
+        $this->db->where('level', $level);
+        $this->db->order_by('nama_user', 'ASC');
+        return $this->db->get($this->table)->result();
+	}
 	
 	function get_all()
     {

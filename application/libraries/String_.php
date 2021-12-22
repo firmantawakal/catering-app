@@ -2,6 +2,18 @@
 
 class String_ {
 
+    function split_date($range_date){			
+		$string = explode(' - ',$range_date);
+
+		$date11 = explode('/',$string[0]);
+		$date22 = explode('/',$string[1]);
+
+		$data['date1'] = $date11[2].'-'.$date11[1].'-'.$date11[0];
+		$data['date2'] = $date22[2].'-'.$date22[1].'-'.$date22[0];
+
+        return $data;
+    }
+
     function base62($num) {
         $index = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $res = '';
