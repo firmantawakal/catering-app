@@ -1,0 +1,92 @@
+<div class="row">
+	<div class="col-md-12 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+			<br />
+<h4>Barang Pinjam</h4>
+    <br /><br />
+    <div class="table-responsive" style="overflow-y: hidden">
+        <table id="dataTable1" class="table table-hover w-100">
+        <thead>
+                            <tr>
+                                <th style="width: 10px">No</th>
+                                <th>Action</th>
+                                <th>Customer</th>
+                                <th>Acara</th>
+                                <th>Waktu</th>
+                                <th>Nama Barang</th>
+                                <th>Jumlah Pinjam</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $no = 0;
+                            foreach ($condition as $data) {
+                                $no++;
+                            ?>
+                                <tr>
+                                    <td><?php echo $no ?></td>
+                                    <td>
+                                        <button type="button" data-target="#modal-edit<?php echo $no; ?>" data-toggle="modal" class="btn btn-success" data-tooltip="tooltip" title="Edit">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
+                                    </td>
+                                    <td><?php echo $data->nama_customer ?></td>
+                                    <td><?php echo $data->nama_acara ?></td>
+                                    <td><?php echo $this->string_->dbdate_to_indo($data->tanggal) ?></td>
+                                    <td><?php echo $data->nama_barang ?></td>
+                                    <td style="background-color: #FFFF8F;"><?php echo $data->pinjam.' '.$data->satuan ?></td>
+                                </tr>
+                                <div id="modal-edit<?php echo $no; ?>" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+													&times;
+												</button>
+												<h5 class="modal-title" id="exampleModalLabel">
+													Kembali Barang
+												</h5>
+											</div>
+											<div class="modal-body">
+												<form autocomplete="off" action="<?php echo site_url('barang_masuk/edit_pinjam') ?>" method="post" enctype="multipart/form-data" class="forms-sample">
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="exampleInputEmail2" class="form-label">Nama Barang</label>
+																<input type="text" class="form-control" value="<?php echo $data->nama_barang ?>" readonly>
+																<input type="hidden" name="id_barang_masuk_det" class="form-control" value="<?php echo $data->id_barang_masuk_detail ?>">
+															</div>
+															<div class="form-group">
+																<label for="exampleInputEmail2" class="form-label">Jumlah Pinjam</label>
+																<input type="text" class="form-control" value="<?php echo $data->pinjam.' '.$data->satuan ?>" readonly>
+																<input type="hidden" name="pinjam" class="form-control" value="<?php echo $data->pinjam ?>">
+																<input type="hidden" name="id_barang" class="form-control" value="<?php echo $data->id_barangs ?>">
+															</div>
+															<div class="form-group">
+																<label for="exampleInputEmail2" class="form-label">Jumlah Kembali</label>
+																<input type="number" name="kembali" class="form-control" value="<?php echo $data->pinjam ?>">
+															</div>
+														</div>
+													</div>
+											</div>
+											<div class="modal-footer">
+													<button type="submit" class="btn btn-effect-ripple btn-danger">Edit</button>
+													<button type="button" class="btn btn-effect-ripple btn-default" data-dismiss="modal">
+														Kembali
+													</button>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+        </table>
+    </div>
+			</div>
+		</div>
+	</div>
+</div>
