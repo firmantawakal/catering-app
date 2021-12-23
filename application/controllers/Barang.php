@@ -36,21 +36,31 @@ class Barang extends CI_Controller {
 
 	public function rusak(){
 		$data['condition'] = $this->m_barang->get_condition('rusak');
+		$data['petugas'] = $this->m_user->get_by_level('petugas');
 		$this->template->load('template','barang/v_barang_rusak', $data);
 	}
 
 	public function pinjam(){
 		$data['condition'] = $this->m_barang->get_condition('pinjam');
+		$data['petugas'] = $this->m_user->get_by_level('petugas');
 		$this->template->load('template','barang/v_barang_pinjam', $data);
 	}
 
 	// LAST WORK ====================
 	public function report($cond){
 		$range_date = $this->string_->split_date($_GET['date_range']);
-		
-		$data['barang_hilang'] = $this->m_barang->get_all_by_range($range_date['date1'],$range_date['date2']);
-
-		$this->template->load('template','barang/v_barang_pinjam', $data);
+		$id_petugas = $_GET['id_user'];
+		$data['barang'] = $this->m_barang->get_all_by_range($range_date['date1'],$range_date['date2'],$id_petugas,$cond);
+		$data['condition'] = $cond;
+		if($cond == 'hilang'){
+			$data['title'] = 'Laporan Barang Hilang';
+		}else if($cond == 'rusak'){
+			$data['title'] = 'Laporan Barang Rusak';
+		}else if($cond == 'pinjam'){
+			$data['title'] = 'Laporan Barang Pinjam';
+		}
+		// echo json_encode($data['barang']);die;
+		$this->template->load('template','barang/v_barang_report', $data);
 	}
 	
 
