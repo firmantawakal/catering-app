@@ -14,7 +14,7 @@
 								<?php echo ($barang_keluar->status==0) ? '<th>Action</th>' : '' ;?>
 								<th style="width: 10px">No</th>
 								<th>Nama Barang</th>
-								<th>Jenis / Fungsi</th>
+								<th>Fungsi</th>
 								<th>Jumlah</th>
 								<th>Update Terakhir</th>
 							</tr>
@@ -40,7 +40,7 @@
 									<?php } ?>
 									<td><?php echo $no++ ?></td>
 									<td><?php echo $data->nama ?></td>
-									<td><?php echo $data->jenis.' / '.$data->fungsi ?></td>
+									<td><?php echo $data->fungsi ?></td>
 									<td><?php echo $data->qty.' '.$data->satuan ?></td>
 									<td><?php echo date('d/m/Y H:i', strtotime($data->updated_at)); ?></td>
 								</tr>

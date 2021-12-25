@@ -17,6 +17,7 @@
                         <input type="text" class="form-control" name="f_no_hp" value="<?php echo $no_hp ?>" placeholder="No. HP">
                     </div>
                 </div>
+                <?php if($this->session->userdata('level')=='admin'){ ?>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Level</label>
                     <div class="col-sm-9">
@@ -28,6 +29,14 @@
                         </select>
                     </div>
                 </div>
+                <?php }elseif($this->session->userdata('level')=='peralatan'){ ?>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Level</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="f_level" value="petugas" readonly>
+                    </div>
+                </div>
+                <?php } ?>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Username</label>
                     <div class="col-sm-9">

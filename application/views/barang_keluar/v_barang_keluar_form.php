@@ -37,8 +37,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail2" class="form-label">Jenis</label>
-                        <input type="text" class="form-control" name="jenis" id="jenis">
+                        <!-- <label for="exampleInputEmail2" class="form-label">Jenis</label> -->
+                        <input type="hidden" class="form-control" name="jenis" id="jenis">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail2" class="form-label">Stok Tersedia</label>

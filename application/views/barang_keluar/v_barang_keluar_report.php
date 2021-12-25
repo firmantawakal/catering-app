@@ -13,7 +13,7 @@
 								<th>Acara</th>
 								<th>Nama Barang</th>
 								<th>Status</th>
-								<th>Jenis / Fungsi</th>
+								<th>Fungsi</th>
 								<th>Jumlah</th>
 								<th>Update Terakhir</th>
 							</tr>
@@ -29,7 +29,7 @@
 									<td><?php echo $data->nama_acara.'<br> '.date('d/m/Y', strtotime($data->tanggal)) ?></td>
 									<td><?php echo $data->nama ?></td>
 									<td><?php echo ($data->status==0) ? 'Ongoing' : 'Selesai' ; ?></td>
-									<td><?php echo $data->jenis.' / '.$data->fungsi ?></td>
+									<td><?php echo $data->fungsi ?></td>
 									<td><?php echo $data->qty.' '.$data->satuan ?></td>
 									<td><?php echo date('d/m/Y H:i', strtotime($data->updated_at)); ?></td>
 								</tr>

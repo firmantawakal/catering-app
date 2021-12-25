@@ -13,7 +13,7 @@ class User extends CI_Controller {
 				 redirect(site_url('login'));
 		}
 
-		if ($this->session->userdata('level') != 'admin') {
+		if ($this->session->userdata('level') == 'petugas') {
 			redirect($_SERVER['HTTP_REFERER']);
 		}
 
