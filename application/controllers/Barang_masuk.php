@@ -66,6 +66,7 @@ class Barang_masuk extends CI_Controller {
 	public function detail($id_barang_masuk){
 		$data['barang_masuk'] = $this->m_barang_masuk->get_by_id($id_barang_masuk);
 		$data['barang_masuk_detail'] = $this->m_barang_masuk->get_barang_masuk_detail($id_barang_masuk);
+		// echo json_encode($data['barang_masuk_detail']);die;
 		$this->template->load('template','barang_masuk/v_barang_masuk_list_detail', $data);
 	}
 

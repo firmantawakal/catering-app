@@ -13,10 +13,6 @@ class Barang extends CI_Controller {
 				 redirect(site_url('login'));
 		}
 
-		if ($this->session->userdata('level') == 'petugas') {
-			redirect($_SERVER['HTTP_REFERER']);
-		}
-
 		$this->load->model('m_barang');
 		$this->load->model('m_fungsi');
 		$this->load->model('m_satuan');
@@ -24,6 +20,9 @@ class Barang extends CI_Controller {
 	}
 	
 	public function index(){
+		if ($this->session->userdata('level') == 'petugas') {
+			redirect($_SERVER['HTTP_REFERER']);
+		}
 		$data['barang'] = $this->m_barang->get_all();
 		$this->template->load('template','barang/v_barang_list', $data);
 	}
@@ -31,18 +30,31 @@ class Barang extends CI_Controller {
 	public function hilang(){
 		$data['condition'] = $this->m_barang->get_condition('hilang');
 		$data['petugas'] = $this->m_user->get_by_level('petugas');
+		if ($this->session->userdata('level') == 'petugas') {
+			$id_user = $this->session->userdata('id_user');
+			$data['condition'] = $this->m_barang->get_condition_dashboard_petugas('hilang',50,$id_user);
+		}
+		// echo json_encode($data['condition']);die;
 		$this->template->load('template','barang/v_barang_hilang', $data);
 	}
 
 	public function rusak(){
 		$data['condition'] = $this->m_barang->get_condition('rusak');
 		$data['petugas'] = $this->m_user->get_by_level('petugas');
+		if ($this->session->userdata('level') == 'petugas') {
+			$id_user = $this->session->userdata('id_user');
+			$data['condition'] = $this->m_barang->get_condition_dashboard_petugas('rusak',50,$id_user);
+		}
 		$this->template->load('template','barang/v_barang_rusak', $data);
 	}
 
 	public function pinjam(){
 		$data['condition'] = $this->m_barang->get_condition('pinjam');
 		$data['petugas'] = $this->m_user->get_by_level('petugas');
+		if ($this->session->userdata('level') == 'petugas') {
+			$id_user = $this->session->userdata('id_user');
+			$data['condition'] = $this->m_barang->get_condition_dashboard_petugas('pinjam',50,$id_user);
+		}
 		$this->template->load('template','barang/v_barang_pinjam', $data);
 	}
 

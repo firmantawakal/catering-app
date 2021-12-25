@@ -12,8 +12,6 @@
                     <th>Action</th>
                     <th style="width: 10px">No</th>
                     <th>Nama</th>
-                    <th>Jenis</th>
-                    <th>Fungsi</th>
                     <th>Data</th>
                     <th>Satuan</th>
                     <th>Update Terakhir</th>
@@ -35,8 +33,6 @@
                         </td>
                         <td><?php echo $no++ ?></td>
                         <td><?php echo $data->nama ?></td>
-                        <td><?php echo $data->jenis ?></td>
-                        <td><?php echo $data->fungsi ?></td>
                         <td><?php echo $data->data ?></td>
                         <td><?php echo $data->satuan ?></td>
                         <td><?php echo date('d/m/Y H:i',strtotime($data->updated_at)) ?></td>

@@ -15,7 +15,6 @@
 								<?php echo ($barang_masuk->status==0) ? '<th>Action</th>' : '' ; ?>
 								<th style="width: 10px">No</th>
 								<th>Nama Barang</th>
-								<th>Jenis / Fungsi</th>
 								<th>Jumlah</th>
 								<th>Masuk</th>
 								<th>Pinjam</th>
@@ -34,7 +33,6 @@
 									<?php echo ($barang_masuk->status==0) ? '<td><button data-tooltip="tooltip" data-target="#modal-edit'.$data->id_barang_masuk_detail.'" data-toggle="modal" title="Edit" class="btn btn-primary"><i class="fa fa-pencil"></i></button></td>' : '' ; ?>
 									<td><?php echo $no++ ?></td>
 									<td><?php echo $data->nama ?></td>
-									<td><?php echo $data->jenis.' / '.$data->fungsi ?></td>
 									<td><?php echo $data->qty.' '.$data->satuan ?></td>
 									<td><?php echo $data->masuk ?></td>
 									<td><?php echo $data->pinjam ?></td>

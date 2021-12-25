@@ -28,6 +28,16 @@ class M_acara extends CI_Model {
         return $this->db->get('acara a')->result();
 	}
 
+	function get_by_petugas($id_user)
+    {
+        $this->db->where('u.id_user', $id_user);
+        $this->db->limit(5);
+        $this->db->order_by('tanggal', 'DESC');
+        $this->db->join('user u', 'u.id_user = a.id_user');
+        $this->db->join('customer c', 'c.id_customer = a.id_customer');
+        return $this->db->get('acara a')->result();
+	}
+
 	function get_all_petugas()
     {
         $this->db->order_by('nama_user', 'ASC');

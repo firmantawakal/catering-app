@@ -3,14 +3,15 @@
 		<div class="card">
 			<div class="card-body">
 				<h4 class="card-title">Barang Pinjam</h4>
-				<a role="button" data-toggle="modal" data-target="#modal-print" href="#" class="btn btn-warning">Laporan</a>
+				<a role="button" data-toggle="modal" data-target="#modal-print" href="#" class="btn btn-warning" <?php echo ($this->session->userdata('level')=='petugas') ? 'style="display: none;"' : ''; ?>>Laporan</a>
 				<br /><br />
 				<div class="table-responsive" style="overflow-y: hidden">
 					<table id="dataTable1" class="table table-hover w-100">
 						<thead>
 							<tr>
 								<th style="width: 10px">No</th>
-								<th>Action</th>
+								<?php echo ($this->session->userdata('level')!='petugas') ? '<th>Action</th>' : ''; ?>
+								<th>Petugas</th>
 								<th>Customer</th>
 								<th>Acara</th>
 								<th>Waktu</th>
@@ -26,11 +27,14 @@
 							?>
 								<tr>
 									<td><?php echo $no ?></td>
+									<?php if ($this->session->userdata('level')!='petugas'): ?>
 									<td>
 										<button type="button" data-target="#modal-edit<?php echo $no; ?>" data-toggle="modal" class="btn btn-success" data-tooltip="tooltip" title="Edit">
 											<i class="fa fa-pencil"></i>
 										</button>
 									</td>
+									<?php endif ?>
+                                    <td><?php echo $data->nama_user ?></td>
 									<td><?php echo $data->nama_customer ?></td>
 									<td><?php echo $data->nama_acara ?></td>
 									<td><?php echo $this->string_->dbdate_to_indo($data->tanggal) ?></td>

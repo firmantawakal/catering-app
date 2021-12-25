@@ -30,36 +30,11 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Jenis</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="f_jenis" value="<?php echo $jenis ?>" placeholder="Jenis">
-                    </div>
-                </div>
-                <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Stok Tersedia</label>
                     <div class="col-sm-9">
                         <input type="number" class="form-control" name="f_data" value="<?php echo $data ?>" placeholder="Stok Tersedia">
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Fungsi</label>
-                    <div class="col-sm-9">
-                        <select name="f_fungsi" class="select2form w-100">
-                                <?php 
-                                    
-                                    $sel = '';
-                                    foreach ($list_fungsi as $dt_fgs) {
-                                        if ($fungsi == $dt_fgs->nama_fungsi) {
-                                            $sel = 'selected';
-                                        }else{
-                                            $sel = '';
-                                        }
-
-                                        echo '<option value="'.$dt_fgs->nama_fungsi.'" '.$sel.'>'.$dt_fgs->nama_fungsi.'</option>';
-                                    }
-                                ?>
-                            </select>
-                    </div>
                 <button type="submit" class="btn btn-primary mr-2">Simpan</button>
                 <a href="javascript:history.go(-1)" class="btn btn-light">Kembali</a>
             </form>

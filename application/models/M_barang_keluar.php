@@ -39,6 +39,13 @@ class M_barang_keluar extends CI_Model {
         $this->db->join('acara b', 'b.id_acara = a.id_acara');
         return $this->db->get('barang_keluar a')->result();
 	}
+
+	function get_all_by_petugas2($id)
+    {
+        $this->db->where('id_user', $id);
+        $this->db->join('acara b', 'b.id_acara = a.id_acara');
+        return $this->db->get('barang_keluar a')->result();
+	}
 	
 	function get_all()
     {
@@ -104,10 +111,15 @@ class M_barang_keluar extends CI_Model {
         $this->db->insert('barang_keluar', $data);
     }
 
-    function insert_copy_temp($id_barang_keluar,$id_barang)
+    function insert_copy_temp($id_barang_keluar,$id_barang,$jenis,$fungsi)
     {
-        $this->db->query('INSERT INTO barang_keluar_detail (id_barang_keluar,id_barang,qty) 
-        SELECT id_barang_keluar,id_barang,qty FROM barang_keluar_detail_temp WHERE id_barang_keluar = '.$id_barang_keluar.' AND id_barang='.$id_barang);
+        $this->db->query('INSERT INTO barang_keluar_detail (id_barang_keluar,id_barang,qty,jenis,fungsi) 
+        SELECT id_barang_keluar,id_barang,qty,jenis,fungsi
+        FROM barang_keluar_detail_temp 
+        WHERE id_barang_keluar = '.$id_barang_keluar.' 
+        AND id_barang='.$id_barang.'
+        AND jenis="'.$jenis.'"
+        AND fungsi="'.$fungsi.'"');
     }
 
     function empty_temp($id)

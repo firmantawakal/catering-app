@@ -13,7 +13,7 @@
 								<th>Petugas</th>
 								<th>Acara</th>
 								<th>Nama Barang</th>
-								<th>Jenis / Fungsi</th>
+								<!-- <th>Jenis / Fungsi</th> -->
 								<th>Jumlah</th>
 								<th>Update Terakhir</th>
 							</tr>
@@ -29,7 +29,7 @@
 									<td><?php echo $data->nama_user ?></td>
 									<td><?php echo $data->nama_acara.'<br> '.date('d/m/Y', strtotime($data->tanggal)) ?></td>
 									<td><?php echo $data->nama ?></td>
-									<td><?php echo $data->jenis.' / '.$data->fungsi ?></td>
+									<!-- <td><?php //echo $data->jenis.' / '.$data->fungsi ?></td> -->
 									<?php 
 									if($condition=='hilang'){
 										echo '<td>'.$data->hilang.' '.$data->satuan.'</td>';

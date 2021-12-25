@@ -22,7 +22,7 @@ class M_barang extends CI_Model {
 
 	function get_condition($cond)
     {
-        $this->db->select('c.nama as nama_customer,nama_acara,a.id_barang as id_barangs,id_barang_masuk_detail,tanggal,b.nama as nama_barang,hilang,pinjam,rusak,satuan');
+        $this->db->select('u.nama_user,c.nama as nama_customer,nama_acara,a.id_barang as id_barangs,id_barang_masuk_detail,tanggal,b.nama as nama_barang,hilang,pinjam,rusak,satuan');
         $this->db->where($cond.' !=', 0);
         $this->db->order_by('tanggal', 'DESC');
         $this->db->join('barang b', 'b.id_barang = a.id_barang');
@@ -37,6 +37,21 @@ class M_barang extends CI_Model {
     {
         $this->db->select('c.nama as nama_customer,nama_acara,a.id_barang as id_barangs,id_barang_masuk_detail,tanggal,b.nama as nama_barang,hilang,pinjam,rusak,satuan');
         $this->db->where($cond.' !=', 0);
+        $this->db->order_by('tanggal', 'DESC');
+        $this->db->limit($limit);
+        $this->db->join('barang b', 'b.id_barang = a.id_barang');
+        $this->db->join('barang_masuk bm', 'a.id_barang_masuk = bm.id_barang_masuk');
+        $this->db->join('acara ac', 'ac.id_acara = bm.id_acara');
+        $this->db->join('customer c', 'ac.id_customer = c.id_customer');
+        $this->db->join('user u', 'ac.id_user = u.id_user');
+        return $this->db->get('barang_masuk_detail a')->result();
+	}
+
+	function get_condition_dashboard_petugas($cond,$limit,$id_user)
+    {
+        $this->db->select('u.nama_user,c.nama as nama_customer,nama_acara,a.id_barang as id_barangs,id_barang_masuk_detail,tanggal,b.nama as nama_barang,hilang,pinjam,rusak,satuan');
+        $this->db->where($cond.' !=', 0);
+        $this->db->where('u.id_user =', $id_user);
         $this->db->order_by('tanggal', 'DESC');
         $this->db->limit($limit);
         $this->db->join('barang b', 'b.id_barang = a.id_barang');

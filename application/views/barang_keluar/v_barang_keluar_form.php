@@ -21,7 +21,24 @@
                     <div class="form-group">
                         <label for="exampleInputEmail2" class="form-label">Fungsi</label>
                         <input type="hidden" name="id_barang_keluar" class="form-control" value="<?php echo $id_barang_keluar ?>">
-                        <input type="text" class="form-control" id="fungsi" readonly>
+                        <select name="fungsi" class="select2form w-100">
+                            <?php 
+                                $sel = '';
+                                foreach ($list_fungsi as $dt_fgs) {
+                                    if ($fungsi == $dt_fgs->nama_fungsi) {
+                                        $sel = 'selected';
+                                    }else{
+                                        $sel = '';
+                                    }
+
+                                    echo '<option value="'.$dt_fgs->nama_fungsi.'" '.$sel.'>'.$dt_fgs->nama_fungsi.'</option>';
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail2" class="form-label">Jenis</label>
+                        <input type="text" class="form-control" name="jenis" id="jenis">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail2" class="form-label">Stok Tersedia</label>
@@ -130,9 +147,7 @@
 <script type="text/javascript">
     document.getElementById("nama_barang").onchange = function(event) {
         var stok = event.target.options[event.target.selectedIndex].dataset.stok;
-        var fungsi = event.target.options[event.target.selectedIndex].dataset.fungsi;
         var satuan = event.target.options[event.target.selectedIndex].dataset.satuan;
-        document.getElementById("fungsi").value = fungsi;
         document.getElementById("stok").value = stok+' '+satuan;
     }
 

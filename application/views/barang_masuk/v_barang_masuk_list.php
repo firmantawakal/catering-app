@@ -8,7 +8,7 @@
 				<a href="<?php echo site_url('barang_masuk/create/') ?>" type="button" class="btn btn-success">
 					Tambah Barang Masuk
 				</a>
-				<a role="button" data-toggle="modal" data-target="#modal-print" href="#" class="btn btn-warning">Laporan</a>
+				<a role="button" data-toggle="modal" data-target="#modal-print" href="#" class="btn btn-warning" <?php echo ($this->session->userdata('level')=='petugas') ? 'style="display: none;"' : ''; ?>>Laporan</a>
 				<br><br>
 				<div class="table-responsive" style="overflow-y: hidden">
 					<table id="dataTable1" class="table table-hover w-100">

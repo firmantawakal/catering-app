@@ -2,9 +2,11 @@
 	<div class="col-md-12 grid-margin stretch-card">
 		<div class="card">
 			<div class="card-body">
+			<?php if ($this->session->userdata('level')!='petugas'): ?>
 				<a role="button" data-toggle="modal" data-target="#modal-add" href="#" class="btn btn-success">Tambah Barang Keluar</a>
 				<a role="button" data-toggle="modal" data-target="#modal-print" href="#" class="btn btn-warning">Laporan</a>
 				<br /><br />
+			<?php endif ?>
 				<div class="table-responsive" style="overflow-y: hidden">
 					<table id="dataTable1" class="table table-hover w-100">
 						<thead>

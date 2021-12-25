@@ -13,17 +13,18 @@ class Barang_keluar extends CI_Controller {
 				 redirect(site_url('login'));
 		}
 
-		if ($this->session->userdata('level') == 'petugas') {
-			redirect($_SERVER['HTTP_REFERER']);
-		}
-
 		$this->load->model('m_barang_keluar');
+		$this->load->model('m_fungsi');
 		$this->load->model('m_acara');
 	}
 	
 	public function index(){
 		$data['barang_keluar'] = $this->m_barang_keluar->get_all();
 		$data['acara'] = $this->m_barang_keluar->get_all_acara();
+		if ($this->session->userdata('level') == 'petugas') {
+			$id_user = $this->session->userdata('id_user');
+			$data['barang_keluar'] = $this->m_barang_keluar->get_all_by_petugas2($id_user);
+		}
 		$this->template->load('template','barang_keluar/v_barang_keluar_list', $data);
 	}
 
@@ -77,6 +78,8 @@ class Barang_keluar extends CI_Controller {
 				'barang'           => $this->m_barang_keluar->get_all_barang(),
 				'barang_temp'      => $this->m_barang_keluar->get_all_barang_temp($id),
 			);
+			$data['list_fungsi'] = $this->m_fungsi->get_all();
+
 			$this->template->load('template','barang_keluar/v_barang_keluar_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Data tidak ditemukan');
@@ -91,6 +94,8 @@ class Barang_keluar extends CI_Controller {
 		$data = array(
 			'id_barang_keluar' => $this->input->post('id_barang_keluar',TRUE),
 			'id_barang' => $this->input->post('id_barang',TRUE),
+			'fungsi' => $this->input->post('fungsi',TRUE),
+			'jenis' => $this->input->post('jenis',TRUE),
 			'qty' => $this->input->post('qty',TRUE),
 		);
 	
@@ -120,13 +125,16 @@ class Barang_keluar extends CI_Controller {
 							 ' WHERE id_barang = '.$brtmp->id_barang);
 			
 			$is_exist = $this->db->query('SELECT * from barang_keluar_detail 
-							  where id_barang_keluar = '.$id_barang_keluar.' AND id_barang = '.$brtmp->id_barang)->result();
+											where jenis = "'.$brtmp->jenis.'" 
+											AND fungsi = "'.$brtmp->fungsi.'" 
+											AND id_barang_keluar = '.$id_barang_keluar.' 
+											AND id_barang = '.$brtmp->id_barang)->result();
 			
 			if (count($is_exist)>0) {
 				$this->db->query('UPDATE barang_keluar_detail SET qty = qty+'.$brtmp->qty.
 							 ' WHERE id_barang_keluar='.$id_barang_keluar.' AND id_barang = '.$brtmp->id_barang);
 			}else{
-				$this->m_barang_keluar->insert_copy_temp($id_barang_keluar,$brtmp->id_barang);
+				$this->m_barang_keluar->insert_copy_temp($id_barang_keluar,$brtmp->id_barang,$brtmp->jenis,$brtmp->fungsi);
 			}
 		}
 

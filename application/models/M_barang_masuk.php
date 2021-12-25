@@ -27,6 +27,7 @@ class M_barang_masuk extends CI_Model {
 	
 	function get_all()
     {
+        $this->db->order_by('a.tanggal_input', 'DESC');
         $this->db->join('acara b', 'b.id_acara = a.id_acara');
         return $this->db->get('barang_masuk a')->result();
 	}
@@ -40,8 +41,10 @@ class M_barang_masuk extends CI_Model {
 
 	function get_barang_masuk_detail($id)
     {
-        $this->db->where('id_barang_masuk', $id);
+        $this->db->where('bk.id_barang_masuk', $id);
+        $this->db->join('barang_masuk bk', 'bk.id_barang_masuk = a.id_barang_masuk');
         $this->db->join('barang b', 'b.id_barang = a.id_barang');
+        $this->db->join('acara ac', 'ac.id_acara = bk.id_acara');
         return $this->db->get('barang_masuk_detail a')->result();
 	}
 	
