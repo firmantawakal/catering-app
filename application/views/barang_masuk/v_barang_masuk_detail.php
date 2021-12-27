@@ -13,7 +13,7 @@ input {
 		<div class="card">
 			<div class="card-body">
 				<form action="<?php echo site_url('barang_masuk/create_action') ?>" method="POST">
-				<a role="button" href="javascript:history.go(-1)" class="btn btn-secondary"><i class="fa fa-arrow-left"></i></a>
+				<a role="button" href="<?php echo site_url('barang_masuk') ?>" class="btn btn-secondary"><i class="fa fa-arrow-left"></i></a>
 				<button class="btn btn-primary" type="submit">Simpan</button>
 				<br /><br />
 				<div class="table-responsive" style="overflow-y: hidden">
@@ -22,7 +22,7 @@ input {
 							<tr>
 								<th style="width: 10px">No</th>
 								<th>Nama Barang</th>
-								<th>Jenis / Fungsi</th>
+								<th>Fungsi</th>
 								<th>Jumlah</th>
 								<th>Masuk</th>
 								<th>Pinjam</th>
@@ -40,7 +40,7 @@ input {
 								<tr>
 									<td><?php echo $no++ ?></td>
 									<td><?php echo $data->nama ?></td>
-									<td><?php echo $data->jenis.' / '.$data->fungsi ?></td>
+									<td><?php echo $data->fungsi ?></td>
 									<td><?php echo $data->qty.' '.$data->satuan ?></td>
 									<td><input type="hidden" name="qty[]" value="<?php echo $data->qty ?>">
 										<input type="hidden" name="id_barang[]" value="<?php echo $data->id_barang ?>">

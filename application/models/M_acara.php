@@ -27,6 +27,15 @@ class M_acara extends CI_Model {
         $this->db->join('customer c', 'c.id_customer = a.id_customer');
         return $this->db->get('acara a')->result();
 	}
+	
+	function get_all_limit($lim)
+    {
+        $this->db->limit($lim);
+        $this->db->order_by('id_acara', 'DESC');
+        $this->db->join('user u', 'u.id_user = a.id_user');
+        $this->db->join('customer c', 'c.id_customer = a.id_customer');
+        return $this->db->get('acara a')->result();
+	}
 
 	function get_by_petugas($id_user)
     {

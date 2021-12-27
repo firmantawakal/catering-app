@@ -5,7 +5,7 @@
 	<div class="col-md-12 grid-margin stretch-card">
 		<div class="card">
 			<div class="card-body">
-			<a role="button" href="javascript:history.go(-1)" class="btn btn-secondary"><i class="fa fa-arrow-left"></i></a>
+			<a role="button" href="<?php echo site_url('barang_masuk') ?>" class="btn btn-secondary"><i class="fa fa-arrow-left"></i></a>
 			<br><br>
 				<div class="table-responsive" style="overflow-y: hidden">
 					<table id="dataTable1" class="table table-hover w-100">

@@ -84,6 +84,7 @@
                                 <th>#</th>
                                 <th style="width: 10px">No</th>
                                 <th>Nama Barang</th>
+                                <th>Fungsi</th>
                                 <th>Kebutuhan</th>
                             </tr>
                         </thead>
@@ -99,6 +100,7 @@
                                             </td>
                                             <td>'.$no.'</td>
                                             <td>'.$brtemp->nama.'</td>
+                                            <td>'.$brtemp->fungsi.'</td>
                                             <td>'.$brtemp->qty.' '.$brtemp->satuan.'</td>
                                         </tr>';
                             ?>

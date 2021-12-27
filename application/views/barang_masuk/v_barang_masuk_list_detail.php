@@ -63,11 +63,6 @@
 																<input type="hidden" name="id_barang_masuk" class="form-control" value="<?php echo $data->id_barang_masuk ?>">
 															</div>
 															<div class="form-group">
-																<label for="exampleInputEmail2" class="form-label">Fungsi</label>
-																<input type="text" class="form-control" value="<?php echo $data->fungsi ?>" readonly>
-															</div>
-															
-															<div class="form-group">
 																<label for="exampleInputEmail2" class="form-label">Jumlah</label>
 																<input type="number" name="qty" class="form-control" value="<?php echo $data->qty ?>" readonly>
 															</div>

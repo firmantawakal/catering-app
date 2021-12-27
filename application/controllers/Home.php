@@ -18,6 +18,7 @@ class Home extends CI_Controller {
 
 	public function index(){
 		if ($this->session->userdata('level')=='admin' || $this->session->userdata('level')=='peralatan') {
+			$data['acara'] = $this->m_acara->get_all_limit(10);
 			$data['dt_barang'] = $this->m_barang->get_all();
 			$data['dt_hilang'] = $this->m_barang->get_condition_dashboard('hilang',10);
 			$data['dt_rusak'] = $this->m_barang->get_condition_dashboard('rusak',10);

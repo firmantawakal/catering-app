@@ -11,7 +11,7 @@
 					<table class="table table-hover w-100 highlight">
 						<thead>
 							<tr>
-								<?php echo ($barang_keluar->status==0) ? '<th>Action</th>' : '' ;?>
+								<?php echo ($barang_keluar->status==0  && $this->session->userdata('level')!='petugas') ? '<th>Action</th>' : '' ;?>
 								<th style="width: 10px">No</th>
 								<th>Nama Barang</th>
 								<th>Fungsi</th>
@@ -27,7 +27,7 @@
 							?>
 								<tr>
 									<?php 
-									if($barang_keluar->status==0){
+									if($barang_keluar->status==0 && $this->session->userdata('level')!='petugas'){
 									?>
 									<td>
 										<button data-tooltip="tooltip" data-target="#modal-edit<?php echo $data->id_barang_keluar_detail; ?>" data-toggle="modal" title="Edit" class="btn btn-primary"><i class="fa fa-pencil"></i>
