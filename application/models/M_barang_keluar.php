@@ -111,14 +111,13 @@ class M_barang_keluar extends CI_Model {
         $this->db->insert('barang_keluar', $data);
     }
 
-    function insert_copy_temp($id_barang_keluar,$id_barang,$jenis,$fungsi)
+    function insert_copy_temp($id_barang_keluar,$id_barang,$fungsi)
     {
-        $this->db->query('INSERT INTO barang_keluar_detail (id_barang_keluar,id_barang,qty,jenis,fungsi) 
-        SELECT id_barang_keluar,id_barang,qty,jenis,fungsi
+        $this->db->query('INSERT INTO barang_keluar_detail (id_barang_keluar,id_barang,qty,fungsi) 
+        SELECT id_barang_keluar,id_barang,qty,fungsi
         FROM barang_keluar_detail_temp 
         WHERE id_barang_keluar = '.$id_barang_keluar.' 
         AND id_barang='.$id_barang.'
-        AND jenis="'.$jenis.'"
         AND fungsi="'.$fungsi.'"');
     }
 

@@ -95,7 +95,6 @@ class Barang_keluar extends CI_Controller {
 			'id_barang_keluar' => $this->input->post('id_barang_keluar',TRUE),
 			'id_barang' => $this->input->post('id_barang',TRUE),
 			'fungsi' => $this->input->post('fungsi',TRUE),
-			'jenis' => $this->input->post('jenis',TRUE),
 			'qty' => $this->input->post('qty',TRUE),
 		);
 	
@@ -105,6 +104,7 @@ class Barang_keluar extends CI_Controller {
 		$this->m_barang_keluar->add_temp($data);
 		$error = $this->db->error();
 
+		// print_r($error);die;
 		if ($error['code'] == 0) {
 			redirect(site_url('barang_keluar/add_product/'.$id_barang_keluar));
 		}
@@ -125,8 +125,7 @@ class Barang_keluar extends CI_Controller {
 							 ' WHERE id_barang = '.$brtmp->id_barang);
 			
 			$is_exist = $this->db->query('SELECT * from barang_keluar_detail 
-											where jenis = "'.$brtmp->jenis.'" 
-											AND fungsi = "'.$brtmp->fungsi.'" 
+											where fungsi = "'.$brtmp->fungsi.'" 
 											AND id_barang_keluar = '.$id_barang_keluar.' 
 											AND id_barang = '.$brtmp->id_barang)->result();
 			
@@ -134,7 +133,7 @@ class Barang_keluar extends CI_Controller {
 				$this->db->query('UPDATE barang_keluar_detail SET qty = qty+'.$brtmp->qty.
 							 ' WHERE id_barang_keluar='.$id_barang_keluar.' AND id_barang = '.$brtmp->id_barang);
 			}else{
-				$this->m_barang_keluar->insert_copy_temp($id_barang_keluar,$brtmp->id_barang,$brtmp->jenis,$brtmp->fungsi);
+				$this->m_barang_keluar->insert_copy_temp($id_barang_keluar,$brtmp->id_barang,$brtmp->fungsi);
 			}
 		}
 

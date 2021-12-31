@@ -13,7 +13,6 @@
 								<th>Acara</th>
 								<th>Nama Barang</th>
 								<th>Status</th>
-								<th>Jenis / Fungsi</th>
 								<th>Jumlah</th>
 								<th>Update Terakhir</th>
 							</tr>
@@ -29,7 +28,6 @@
 									<td><?php echo $data->nama_acara.'<br> '.date('d/m/Y', strtotime($data->tanggal)) ?></td>
 									<td><?php echo $data->nama ?></td>
 									<td><?php echo ($data->status==0) ? 'Ongoing' : 'Selesai' ; ?></td>
-									<td><?php echo $data->jenis.' / '.$data->fungsi ?></td>
 									<td><?php echo $data->qty.' '.$data->satuan ?></td>
 									<td><?php echo date('d/m/Y H:i', strtotime($data->updated_at)); ?></td>
 								</tr>
@@ -55,7 +53,7 @@ $(document).ready(function() {
             footer: true,
             title: 'Laporan Barang Masuk Tanggal <?php echo $_GET['date_range'] ?>\n',
             exportOptions: {
-                    columns: [0,1,2,3,4,5,6]
+                    columns: [0,1,2,3,4,5]
                 }
         },
         {
@@ -63,7 +61,7 @@ $(document).ready(function() {
             footer: false,
             title: 'Laporan Barang Masuk Tanggal <?php echo $_GET['date_range'] ?>\n',
             exportOptions: {
-                    columns: [0,1,2,3,4,5,6]
+                    columns: [0,1,2,3,4,5]
             }
         }         
         ]  
