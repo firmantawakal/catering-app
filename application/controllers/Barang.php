@@ -84,9 +84,7 @@ class Barang extends CI_Controller {
 				'id_barang' => '',
 				'nama' => '',
 				'satuan' => '',
-				'jenis' => '',
 				'data' => '',
-				'fungsi' => ''
 		);
 		$data['list_fungsi'] = $this->m_fungsi->get_all();
 		$data['list_satuan'] = $this->m_satuan->get_all();
@@ -99,9 +97,7 @@ class Barang extends CI_Controller {
 		$data = array(
 			'nama' => $this->input->post('f_nama',TRUE),
 			'satuan' => $this->input->post('f_satuan',TRUE),
-			'jenis' => $this->input->post('f_jenis',TRUE),
 			'data' => $this->input->post('f_data',TRUE),
-			'fungsi' => $this->input->post('f_fungsi',TRUE)
 		);
 		
 		$db_debug = $this->db->db_debug; //save setting
@@ -131,9 +127,7 @@ class Barang extends CI_Controller {
 				'id_barang' => $row->id_barang,
 				'nama' => $row->nama,
 				'satuan' => $row->satuan,
-				'jenis' => $row->jenis,
 				'data' => $row->data,
-				'fungsi' => $row->fungsi
 			);
 			$data['list_fungsi'] = $this->m_fungsi->get_all();
 			$data['list_satuan'] = $this->m_satuan->get_all();
@@ -151,9 +145,7 @@ class Barang extends CI_Controller {
 		$data = array(
 			'nama' => $this->input->post('f_nama',TRUE),
 			'satuan' => $this->input->post('f_satuan',TRUE),
-			'jenis' => $this->input->post('f_jenis',TRUE),
 			'data' => $this->input->post('f_data',TRUE),
-			'fungsi' => $this->input->post('f_fungsi',TRUE)
 		);
 		
 		$db_debug = $this->db->db_debug; //save setting
