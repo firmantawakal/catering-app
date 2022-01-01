@@ -116,7 +116,7 @@ $(document).ready(function() {
             footer: true,
             title: 'Laporan Stok Barang\n',
             exportOptions: {
-                    columns: [1,2,3,4,5,6,7]
+                    columns: [1,2,3,4,5]
                 }
         },
         {
@@ -124,7 +124,7 @@ $(document).ready(function() {
             footer: false,
             title: 'Laporan Stok Barang',
             exportOptions: {
-                    columns: [1,2,3,4,5,6,7]
+                    columns: [1,2,3,4,5]
             }
         }         
         ]  
